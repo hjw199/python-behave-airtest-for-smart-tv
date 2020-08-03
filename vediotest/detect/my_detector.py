@@ -6,7 +6,7 @@ import glob
 import cv2
 import numpy as np
 
-import onnxruntime
+# import onnxruntime
 
 from vediotest.utils.my_config import Config
 from vediotest.utils.my_logger import Logger
@@ -40,7 +40,7 @@ class YoloDetector(object):
         assert len(glob.glob(os.path.join(self.loadDir,'*.onnx')))==1
         weightPath = glob.glob(os.path.join(self.loadDir,'*.onnx'))[0]
         
-        self.sess = onnxruntime.InferenceSession(weightPath, None)
+        # self.sess = onnxruntime.InferenceSession(weightPath, None)
         self.modelname=os.path.splitext(os.path.split(weightPath)[1])[0]
     
     def load_class(self):
