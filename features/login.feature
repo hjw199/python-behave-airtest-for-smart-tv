@@ -54,19 +54,15 @@ Feature: 登录
     Given 未登录账号
     When 点击 账号登录
     When 点击 登录历史
-    When 点击"需要登录账号"
+    When 点击"需要登录账号"  #未识别出图片
     Then 应该看到"下课图片"
 
   Scenario: 删除快捷登录
     Given 未登录账号
-    When 右键点击 登录头像
-    When 点击"从快速登录移除图片"
-    When 右键点击 登录头像
-    When 点击"从快速登录移除图片"
-    When 右键点击 登录头像
-    When 点击"从快速登录移除图片"
+    When 删除登录头像
     Then 不存在 登录头像
 
+#实际未完成，验证过了
   Scenario Outline: 删除快捷登录
     Given 未登录账号
     When 点击 账号登录
@@ -88,6 +84,7 @@ Feature: 登录
     # Scenario: 云资料夹登录
     Given 未登录账号
     When 点击 <app>
+    When 等待0.5秒
     When 点击 账号登录
     When 在账号输入<账号>
     When 在密码输入<密码>
@@ -109,6 +106,7 @@ Feature: 登录
     Examples:
       | app | 个人信息 |
       | 云资料夹 | "ppt图片" |
+#PPT图片未识别出来
 
   Scenario Outline: 已登录打开云白板
   # Scenario: 未登录打开应用

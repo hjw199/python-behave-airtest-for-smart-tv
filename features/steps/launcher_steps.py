@@ -4,8 +4,8 @@ import time
 import datetime
 import random
 from mappings import *
-from airtest.core.android.touch_methods.minitouch import *
-from airtest.core.android.touch_methods.base_touch import *
+from airtest.core.android.minitouch import *
+from airtest.core.android.base_touch import *
 from poco.utils.track import *
 from vediotest.vediotest import *
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
@@ -184,6 +184,19 @@ def alogin(context):
         location_for("登录").click()
     assert location_for("下课")
 
+@Step('删除登录头像')
+def dellogin(context):
+    while True:
+        if location_for("登录头像"):
+            context.button=location_for("登录头像")
+            context.button.long_click()
+            context.img=location_img('从快速登录移除图片')
+            resolution_x = poco.get_screen_size()[0]
+            resolution_y = poco.get_screen_size()[1]
+            touch(Template(context.img, record_pos=None, resolution=(resolution_x, resolution_y)))
+        else:
+            break
+
 '''系统相关'''
 
 @Given('我已连接大屏')
@@ -204,7 +217,9 @@ def mygotohome(context):
 
 @Step('未运行应用')
 def nousingapp(context):
-    pass
+    for i in SOFT_DICT:
+        context.soft=location_soft(i)
+        stop_app(context.soft)
 
 @Step('等待{t}秒')
 def mywait(context,t):
@@ -300,3 +315,28 @@ def myvoice(context,voice):
 
 '''底部上划'''
 
+@Step('点击运行应用外围')
+def Outusing_Click(context):
+    while True:
+        x=random.randint(1,1920)
+        y=random.randint(1,1080)
+        if 566<x<1354 and 947<y<1080:
+            continue
+        if 282<x<1617 and 218<y<856:
+            continue
+        else:
+            touch((x,y))
+            break
+
+@Step('点击常用应用栏外围')
+def Outnormal_Click(context):
+    while True:
+        x=random.randint(1,1920)
+        y=random.randint(1,1080)
+        if 566<x<1354 and 947<y<1080:
+            continue
+        if 282<x<1617 and 218<y<856:
+            continue
+        else:
+            touch((x,y))
+            break

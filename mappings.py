@@ -51,9 +51,15 @@ POCO_DICT = {
 
 SOFT_DICT = {
     # "登录软件" : 'adb shell am start -n com.ruijie.login.server/com.ruijie.login.server.ui.login.LoginActivity',
-    "登录软件" : 'com.ruijie.login.server',
+    # "登录软件" : 'com.ruijie.login.server',
     "云资料夹" : 'com.ruijie.whiteboard.cloudfile.screen',
     "云白板" : 'com.ruijie.whiteboard.lscreen',
+    "NB物理实验" : 'nb.com.nobook.nbPhysStudent',
+    "NB化学实验" : 'nb.com.nobook.nbChemicalStudent',
+    "浏览器" : 'com.android.browser',
+    "桌面程序" : 'com.ruijie.launcher20200520',
+    "视频播放器" : 'com.mstar.tv.tvplayer.ui',
+    "WPS" : 'com.kingsoft.moffice_pro',
 }
 
 IMG_DICT = {
