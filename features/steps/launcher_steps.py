@@ -31,6 +31,12 @@ def myclick(context,button):
     context.button=location_for(button)
     context.button.click()
 
+@Step('点击坐标')
+def posclick(context):
+    for point in context.table:
+        touch((float(point["x"]),float(point["y"])))
+        # touch((100,200))
+
 @Step('右键点击 {button}')
 def myrightclick(context,button):
     context.button=location_for(button)
