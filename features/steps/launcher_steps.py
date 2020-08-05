@@ -223,7 +223,7 @@ def nousingapp(context):
 
 @Step('等待{t}秒')
 def mywait(context,t):
-    time.sleep(t)
+    time.sleep(float(t))
 
 
     
