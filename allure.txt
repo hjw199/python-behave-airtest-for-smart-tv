@@ -1,6 +1,6 @@
 cd /home/hjw/OS_test
 behave -f allure_behave.formatter:AllureFormatter -o "/home/hjw/OS_test/reports" 
-allure generate --clean "/home/hjw/OS_test/reports" -o "/home/hjw/OS_test/reports/reports-JsonFiles"
+allure generate --clean "D:\hjw\MVP3.0_OS_Test\reports" -o "D:\hjw\MVP3.0_OS_Test\reports"
 
 cd /home/hjw/OS_test
 behave -f allure_behave.formatter:AllureFormatter -o "/home/hjw/OS_test/reports" ./features
