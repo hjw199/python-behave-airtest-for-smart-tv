@@ -95,8 +95,9 @@ def mycommonapp(context):
     # multitouch_event.append(UpEvent(0))
     # device().minitouch.perform(multitouch_event)
     multitouch_event = []
-    multitouch_event.append(DownEvent((random.randint(1,1920), 1080), 0))
-    multitouch_event.append(MoveEvent((random.randint(1,1920),1000),0))
+    x = random.randint(1,1920)
+    multitouch_event.append(DownEvent((x, 1080), 0))
+    multitouch_event.append(MoveEvent((x,1000),0))
     # multitouch_event.append(SleepEvent(1))
     multitouch_event.append(UpEvent(0))
     device().minitouch.perform(multitouch_event)
@@ -104,8 +105,9 @@ def mycommonapp(context):
 @Step('底部上划唤出运行应用')
 def myusingapp(context):
     multitouch_event = []
-    multitouch_event.append(DownEvent((random.randint(1,1920), 1080), 0))
-    multitouch_event.append(MoveEvent((random.randint(1,1920),900),0))
+    x = random.randint(1,1920)
+    multitouch_event.append(DownEvent((x, 1080), 0))
+    multitouch_event.append(MoveEvent((x,900),0))
     # multitouch_event.append(SleepEvent(1))
     multitouch_event.append(UpEvent(0))
     device().minitouch.perform(multitouch_event)
@@ -113,8 +115,9 @@ def myusingapp(context):
 @Step('底部上划回到桌面')
 def myswipehome(context):
     multitouch_event = []
-    multitouch_event.append(DownEvent((random.randint(1,1920), 1080), 0))
-    multitouch_event.append(MoveEvent((random.randint(1,1920),800),0))
+    x = random.randint(1,1920)
+    multitouch_event.append(DownEvent((x, 1080), 0))
+    multitouch_event.append(MoveEvent((x,800),0))
     # multitouch_event.append(SleepEvent(1))
     multitouch_event.append(UpEvent(0))
     device().minitouch.perform(multitouch_event)
@@ -223,9 +226,26 @@ def mygotohome(context):
 
 @Step('未运行应用')
 def nousingapp(context):
-    for i in SOFT_DICT:
-        context.soft=location_soft(i)
-        stop_app(context.soft)
+    # for i in SOFT_DICT:
+    #     context.soft=location_soft(i)
+    #     stop_app(context.soft)
+    gotohome()
+    multitouch_event = []
+    multitouch_event.append(DownEvent((random.randint(1,1920), 1080), 0))
+    multitouch_event.append(MoveEvent((random.randint(1,1920),900),0))
+    multitouch_event.append(UpEvent(0))
+    device().minitouch.perform(multitouch_event)
+    while True:
+        if location_img("关闭正在运行应用"):
+            context.img=location_img("关闭正在运行应用")
+            resolution_x = poco.get_screen_size()[0]
+            resolution_y = poco.get_screen_size()[1]
+            touch(Template(context.img, record_pos=None, resolution=(resolution_x, resolution_y)))
+            continue
+        else:
+            break
+
+
 
 @Step('等待{t}秒')
 def mywait(context,t):
