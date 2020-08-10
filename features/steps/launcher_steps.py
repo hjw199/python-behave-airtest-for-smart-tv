@@ -1,5 +1,6 @@
 from config.config import *
 from airtest.core.api import *
+from airtest.core.cv import Template, TargetPos
 import time
 import datetime
 import random
@@ -16,8 +17,20 @@ def gotohome():
     # poco.adb_client.shell('input keyevent 3')
     poco.adb_client.shell('am start -n com.ruijie.launcher20200520/com.ruijie.launcher20200520.launcher.LauncherActivity')
     # home()
+    touch((100,100))
+    time.sleep(0.5)
 
-    
+def existsimg(image_path):
+    resolution_x = poco.get_screen_size()[0]
+    resolution_y = poco.get_screen_size()[1]
+    query = Template(image_path, target_pos=TargetPos.MID, resolution=(resolution_x, resolution_y),rgb = True)
+    try:
+        pos = loop_find(query,timeout = 5)
+    except Exception as e:
+        return False
+    else:
+        return pos
+
 '''手指动作'''
 
 @Step('在{input}输入{content}')
@@ -101,26 +114,31 @@ def mycommonapp(context):
     # multitouch_event.append(SleepEvent(1))
     multitouch_event.append(UpEvent(0))
     device().minitouch.perform(multitouch_event)
+    time.sleep(0.5)
 
 @Step('底部上划唤出运行应用')
 def myusingapp(context):
     multitouch_event = []
     x = random.randint(1,1920)
     multitouch_event.append(DownEvent((x, 1080), 0))
-    multitouch_event.append(MoveEvent((x,900),0))
+    multitouch_event.append(MoveEvent((x,850),0))
     # multitouch_event.append(SleepEvent(1))
     multitouch_event.append(UpEvent(0))
     device().minitouch.perform(multitouch_event)
+    time.sleep(0.5)
+
 
 @Step('底部上划回到桌面')
 def myswipehome(context):
     multitouch_event = []
     x = random.randint(1,1920)
     multitouch_event.append(DownEvent((x, 1080), 0))
-    multitouch_event.append(MoveEvent((x,800),0))
+    multitouch_event.append(MoveEvent((x,600),0))
     # multitouch_event.append(SleepEvent(1))
     multitouch_event.append(UpEvent(0))
     device().minitouch.perform(multitouch_event)
+    time.sleep(0.5)
+
 
 
 @Step('四指下划缩小屏幕')
@@ -139,6 +157,8 @@ def mysmallpanel(context):
     multitouch_event.append(UpEvent(2))
     multitouch_event.append(UpEvent(3))
     device().minitouch.perform(multitouch_event)
+    time.sleep(0.5)
+
 
 '''登录相关'''
 
@@ -235,15 +255,15 @@ def nousingapp(context):
     multitouch_event.append(MoveEvent((random.randint(1,1920),900),0))
     multitouch_event.append(UpEvent(0))
     device().minitouch.perform(multitouch_event)
+    img = location_img("关闭正在运行应用")
+    resolution_x = poco.get_screen_size()[0]
+    resolution_y = poco.get_screen_size()[1]
     while True:
-        if location_img("关闭正在运行应用"):
-            context.img=location_img("关闭正在运行应用")
-            resolution_x = poco.get_screen_size()[0]
-            resolution_y = poco.get_screen_size()[1]
-            touch(Template(context.img, record_pos=None, resolution=(resolution_x, resolution_y)))
-            continue
+        if existsimg(img):
+            touch(Template(img, record_pos=None, resolution=(resolution_x, resolution_y)))
         else:
             break
+    gotohome()
 
 
 
