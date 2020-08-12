@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="93268da4-221b-4a5e-8a2e-28e1e90ad85f" name="Default Changelist" comment="" />
+    <list default="true" id="93268da4-221b-4a5e-8a2e-28e1e90ad85f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/config/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/features/config/config.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/steps/launcher_steps.py" beforeDir="false" afterPath="$PROJECT_DIR$/features/steps/launcher_steps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mappings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mappings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1eIz6iFAooBH6adxzKIZMxkIflF" />
   <component name="ProjectViewState">

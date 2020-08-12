@@ -1,4 +1,4 @@
-# Feature: 底部上划
+Feature: 底部上划
 
 #    Scenario:常用工具栏
 #       When 回到桌面

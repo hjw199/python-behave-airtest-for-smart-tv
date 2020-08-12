@@ -20,6 +20,19 @@ def location_img(key):
     location = PicPath + location
     return location
 
+def location_pos(key):
+    position = []
+    location = POS_DICT.get(key)
+    if int(location[1]):
+        position.append(int(location[1:5]))
+    else:
+        position.append(int(location[2:5]))
+    if int(location[6]):
+        position.append(int(location[6:10]))
+    else:
+        position.append(int(location[7:10]))
+    return position
+
 def poco_type(type, content):
     attr = {
         "type": type,
@@ -73,6 +86,7 @@ IMG_DICT = {
     "需要登录账号":'需要登录账号.png',
     "账号密码错误提示":'账号密码错误提示.png',
     "云白板图标":'云白板图标.png',
+    "云白板图标1":'云白板图标1.png',
     "白板登录头像":'白板登录头像.png',
     "宝可梦图片":'宝可梦图片.png',
     "ppt图片":'ppt图片.png',
@@ -85,4 +99,9 @@ IMG_DICT = {
     "正在运行云白板图标":'正在运行云白板图标.png',
     "正在运行云资料夹图标":'正在运行云资料夹图标.png',
     "关闭正在运行应用":'关闭正在运行应用.png',
+}
+
+POS_DICT = {
+    "云资料夹" : '(1189,0384)',
+    "云白板" : '(1000,0384)',
 }

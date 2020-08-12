@@ -1,13 +1,16 @@
 from config.config import *
 from airtest.core.api import *
 from airtest.core.cv import Template, TargetPos
+from airtest.aircv import aircv
 import time
 import datetime
 import random
+import numpy as np, numpy.random
 from mappings import *
 from airtest.core.android.minitouch import *
 from airtest.core.android.base_touch import *
 from poco.utils.track import *
+from poco.proxy import UIObjectProxy
 from vediotest.vediotest import *
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 poco = AndroidUiautomationPoco()
@@ -17,7 +20,7 @@ def gotohome():
     # poco.adb_client.shell('input keyevent 3')
     poco.adb_client.shell('am start -n com.ruijie.launcher20200520/com.ruijie.launcher20200520.launcher.LauncherActivity')
     # home()
-    touch((100,100))
+    touch((1,1))
     time.sleep(0.5)
 
 def existsimg(image_path):
@@ -30,6 +33,38 @@ def existsimg(image_path):
         return False
     else:
         return pos
+
+def find_image(image_path, target_image=None, target_pos=TargetPos.MID, timeout=20, threshold=None, interval=0.5,rgb=False, intervalfunc=None):
+    start_time = time.time()
+    resolution_x = poco.get_screen_size()[0]
+    resolution_y = poco.get_screen_size()[1]
+    query = Template(image_path, target_pos=target_pos, resolution=(resolution_x, resolution_y),rgb = rgb)
+    while True:
+        if target_image:
+            screen = aircv.imread(target_image)
+        else:
+            imagepath = screenshotDir + datetime.datetime.now().strftime('%Y%m%d-%H%M%S') + ".png"
+            screen = airtestG.DEVICE.snapshot(imagepath)
+            print("----------------")
+            print(screen is None)
+            print("----------------")
+        if screen is None:
+            print("Screen is None, may be locked")
+        else:
+            if threshold:
+                query.threshold = threshold
+            match_pos = query.match_in(screen)
+            if match_pos:
+                return match_pos
+
+        if intervalfunc is not None:
+            intervalfunc()
+
+        # 超时则raise，未超时则进行下次循环:
+        if (time.time() - start_time) > timeout:
+            raise Exception('Picture %s not found in screen' % query)
+        else:
+            time.sleep(interval)
 
 '''手指动作'''
 
@@ -141,24 +176,48 @@ def myswipehome(context):
 
 
 
-@Step('四指下划缩小屏幕')
-def mysmallpanel(context):
+# @Step('四指下划缩小屏幕')
+# def mysmallpanel(context):
+#     multitouch_event = []
+#     multitouch_event.append(DownEvent((960, 100), 0))
+#     multitouch_event.append(DownEvent((930, 100), 1))
+#     multitouch_event.append(DownEvent((900, 100), 2))
+#     multitouch_event.append(DownEvent((990, 100), 3))
+#     multitouch_event.append(MoveEvent((960,800),0))
+#     multitouch_event.append(MoveEvent((930,800),1))
+#     multitouch_event.append(MoveEvent((900,800),2))
+#     multitouch_event.append(MoveEvent((990,800),3))
+#     multitouch_event.append(UpEvent(0))
+#     multitouch_event.append(UpEvent(1))
+#     multitouch_event.append(UpEvent(2))
+#     multitouch_event.append(UpEvent(3))
+#     device().minitouch.perform(multitouch_event)
+#     time.sleep(0.5)
+
+@Step('四指下划缩小屏幕至{ratio}')
+def mysmallpanel(context,ratio):
+    context.ratio = float(ratio)
     multitouch_event = []
-    multitouch_event.append(DownEvent((960, 100), 0))
-    multitouch_event.append(DownEvent((930, 100), 1))
-    multitouch_event.append(DownEvent((900, 100), 2))
-    multitouch_event.append(DownEvent((990, 100), 3))
-    multitouch_event.append(MoveEvent((960,800),0))
-    multitouch_event.append(MoveEvent((930,800),1))
-    multitouch_event.append(MoveEvent((900,800),2))
-    multitouch_event.append(MoveEvent((990,800),3))
+    x = random.randint(30,1890)
+    t = random.randint(1,29)
+    y = random.randint(1,1080)
+    y1 = y*random.uniform(0.95,1.05)
+    y2 = y*random.uniform(0.95,1.05)
+    y3 = y*random.uniform(0.95,1.05)
+    y4 = y*random.uniform(0.95,1.05)
+    multitouch_event.append(DownEvent((x, y1), 0))
+    multitouch_event.append(DownEvent(((x+random.randint(16,29)), y2), 1))
+    multitouch_event.append(DownEvent(((x-random.randint(1,29)), y3), 2))
+    multitouch_event.append(DownEvent(((x+random.randint(1,15)), y4), 3))
+    multitouch_event.append(MoveEvent((x,(1080-y1)*(1-context.ratio)+y1),0))
+    multitouch_event.append(MoveEvent(((x-random.randint(1,29)),(1080-y2)*(1-context.ratio)+y2),1))
+    multitouch_event.append(MoveEvent(((x-random.randint(1,29)),(1080-y3)*(1-context.ratio)+y3),2))
+    multitouch_event.append(MoveEvent(((x+random.randint(1,15)),(1080-y4)*(1-context.ratio)+y4),3))
     multitouch_event.append(UpEvent(0))
     multitouch_event.append(UpEvent(1))
     multitouch_event.append(UpEvent(2))
     multitouch_event.append(UpEvent(3))
     device().minitouch.perform(multitouch_event)
-    time.sleep(0.5)
-
 
 '''登录相关'''
 
@@ -323,6 +382,32 @@ def mytime(context):
     tvday = tvdate[3:5]
     tvweek = tvdate[7:10]
     if nowday==tvday and nowmon == tvmon and nowmin == tvtime and nowweek == tvweek:
+        assert True
+    else:
+        assert False
+
+@Step('桌面成比例缩小至{ratio}')
+def smallpanelaccert(context,ratio):
+    context.ratio = float(ratio)
+    resolution_x = poco.get_screen_size()[0]
+    resolution_y = poco.get_screen_size()[1]
+    pos = location_pos("云白板")
+    poco.adb_client.start_cmd('root')
+    poco.adb_client.start_cmd('remount')
+    time.sleep(2)
+    poco.adb_client.shell('screencap -p /data/screen.png')
+    screenshootpath = 'pull /data/screen.png '+PicPath+'screen.png'
+    poco.adb_client.start_cmd(eval('%r'%screenshootpath))
+    poco.adb_client.shell('rm /data/screen.png')
+    image_path = PicPath+'云白板图标'+ratio+'.png'
+    target_image = PicPath+'screen.png'
+    newpos = find_image(image_path=image_path,target_image=target_image)
+    # newpos = find_image(image_path=r'C:\Users\86186\MVP3.0_OS_Test\features\steps\pic\云白板图标0.8.png',target_image=r'C:\Users\86186\Desktop\screen.png')
+    xpos = resolution_x/2+(pos[0]-resolution_x/2)*context.ratio
+    ypos = resolution_y-(resolution_y-pos[1])*context.ratio
+    xpos = abs(xpos-newpos[0])
+    ypos = abs(ypos-newpos[1])
+    if xpos<5 and ypos<5:
         assert True
     else:
         assert False
