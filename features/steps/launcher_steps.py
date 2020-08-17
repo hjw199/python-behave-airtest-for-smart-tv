@@ -471,3 +471,10 @@ def Outnormal_Click(context):
         else:
             touch((x,y))
             break
+
+
+@Step('click_specific_position')
+def posclick(context):
+    for point in context.table:
+        touch((float(point["x"]),float(point["y"])))
+        # touch((100,200))
