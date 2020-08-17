@@ -7,8 +7,6 @@ import datetime
 import random
 import numpy as np, numpy.random
 from mappings import *
-from airtest.core.android.minitouch import *
-from airtest.core.android.base_touch import *
 from poco.utils.track import *
 from poco.proxy import UIObjectProxy
 from vediotest.vediotest import *
