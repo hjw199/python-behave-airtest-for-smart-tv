@@ -14,7 +14,8 @@ from airtest.aircv import aircv
 # os.system('adb shell input keyevent 3')
 
 # home()
-start_app('com.netease.nie.yosemite')
+# start_app('com.netease.nie.yosemite')
+# start_app('com.ruijie.launcher20200520')
 # stop_app('com.ruijie.whiteboard.cloudfile.screen')
 
 # SOFT_DICT = {
@@ -111,6 +112,18 @@ start_app('com.netease.nie.yosemite')
 # #     pos = location_pos(i)
 # #     print(pos)
 
+def screen_shoot(name):
+    poco.adb_client.start_cmd('root')
+    poco.adb_client.start_cmd('remount')
+    time.sleep(2)
+    poco.adb_client.shell('screencap -p /data/screen.png')
+    time.sleep(2)
+    screenshootpath = 'pull /data/screen.png '+PicPath+str(name)+'.png'
+    poco.adb_client.start_cmd(eval('%r'%screenshootpath))
+    poco.adb_client.shell('rm /data/screen.png')
+
+# name = 'test'    
+# screen_shoot(name)
 
 def existsimg(image_path,target_pos=TargetPos.MID):
     resolution_x = poco.get_screen_size()[0]
@@ -157,7 +170,7 @@ def find_image(image_path, target_image=None, target_pos=TargetPos.MID, timeout=
             time.sleep(interval)
 
 
-touch((1,1))
+# touch((1,1))
 
 # ratio = 0.8
 # multitouch_event = []
@@ -203,3 +216,7 @@ touch((1,1))
 # # #     assert True
 # # # else:
 # # #     assert False
+
+newpos = find_image(image_path=r'.\features\steps\pic\小于三分之一常用应用栏.png',target_image=r'.\features\steps\pic\screen.png')
+print("111111111111111111111111111111111111111111111111111111")
+print(newpos)
