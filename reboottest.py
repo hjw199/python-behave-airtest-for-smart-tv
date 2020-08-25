@@ -14,6 +14,7 @@ import subprocess
 from airtest.core.android import adb as airtest_adb, Android
 connect_device("android:///%s" % Android_Serial_No)
 poco = AndroidUiautomationPoco()
+
 def gotohome():
     # poco.adb_client.shell('input keyevent 3')
     poco.adb_client.shell('am start -n com.ruijie.launcher20200520/com.ruijie.launcher20200520.launcher.LauncherActivity')

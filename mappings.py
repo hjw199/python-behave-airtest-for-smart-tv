@@ -1,5 +1,5 @@
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
-from features.config.config import *
+from config.config import *
 poco = AndroidUiautomationPoco()
 
 def location_for(key):
@@ -16,8 +16,9 @@ def location_soft(key):
     return location
     
 def location_img(key):
-    location = IMG_DICT.get(key)
-    location = PicPath + location
+    # location = IMG_DICT.get(key)
+    location = key + '.png'
+    location = os.path.join(PicPath,location)
     return location
 
 def location_pos(key):
@@ -98,6 +99,8 @@ IMG_DICT = {
     "正在运行应用":'正在运行应用.png',
     "正在运行云白板图标":'正在运行云白板图标.png',
     "正在运行云资料夹图标":'正在运行云资料夹图标.png',
+    "正在运行浏览器图标":'正在运行浏览器图标.png',
+    "正在运行wps图标":'正在运行wps图标.png',
     "关闭正在运行应用":'关闭正在运行应用.png',
     "小于三分之一常用应用栏":'小于三分之一常用应用栏.png',
 }

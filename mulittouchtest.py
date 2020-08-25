@@ -206,10 +206,67 @@ def multi_swipe_noup(tuple_from_xy, tuple_to_xy,finger=1, duration=0.8, steps=5)
 # # print("1111111111111111111111111111111111111111111111")
 # # print(multitouch_event)
 # device().minitouch.perform(multitouch_event)
-# time.sleep(5)
+# # time.sleep(5)
+# multitouch_event = []
+# for i in range(0,5):
+#     multitouch_event.append(UpEvent(i))
+# print("1111111111111111111111111111111111111111111111")
+# print(multitouch_event)
+# device().minitouch.perform(multitouch_event)
+
+'''测试回到桌面'''
+finger = random.randint(1,5)
+# finger = 1
 multitouch_event = []
-for i in range(0,5):
-    multitouch_event.append(UpEvent(i))
-print("1111111111111111111111111111111111111111111111")
-print(multitouch_event)
+x = random.randint(10,1890)
+y = random.randint(1070,1080)
+# st = random.randint(OAppHigh,1080)
+st = random.randint(110,y)
+# duration = round(float(st)/float(1500),2)
+# duration = round(float(st)/float(3000),2)
+duration = 0.2
+multitouch_event = []
+multitouch_event += multi_swipe((x,y), (x,y-st),finger=finger, duration=duration, steps=5)
+# print("1111111111111111111111111111111111111111111111")
+# print(multitouch_event)
 device().minitouch.perform(multitouch_event)
+print("1111111111111111111111111111111111111111111111")
+print(y-st)
+print(duration)
+
+# 624/0.15   465/0.2    869/0.07     744/0.11    907/0.05      442/0.21     425/0.22
+
+'''点击正在运行应用外围'''
+# while True:
+#     x=random.randint(1,1920)
+#     y=random.randint(1,1080)
+#     if 290<x<714 and 190<y<493:
+#         continue
+#     if 737<x<1161 and 190<y<493:
+#         continue
+#     if 1183<x<1607 and 190<y<493:
+#         continue
+#     if 290<x<714 and 514<y<816:
+#         continue
+#     if 737<x<1161 and 514<y<816:
+#         continue
+#     if 1183<x<1607 and 514<y<816:
+#         continue
+#     if 592<x<1324 and 920<y<1061:
+#         continue
+#     else:
+#         print("1111111111111111111111111111111111111111111111")
+#         print(x,y)
+#         touch((x,y))
+#         break
+
+# while True:
+#     x=random.randint(1,1920)
+#     y=random.randint(1,1080)
+#     if 592<x<1324 and 920<y<1061:
+#         continue
+#     else:
+#         print("1111111111111111111111111111111111111111111111")
+#         print(x,y)
+#         touch((x,y))
+#         break

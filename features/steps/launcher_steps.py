@@ -1,4 +1,3 @@
-# from config.config import *
 from airtest.core.api import *
 from airtest.core.cv import Template, TargetPos
 from airtest.aircv import aircv
@@ -10,22 +9,12 @@ from mappings import *
 from poco.utils.track import *
 from poco.proxy import UIObjectProxy
 from vediotest.vediotest import *
-# from poco.drivers.android.uiautomation import AndroidUiautomationPoco
-# poco = AndroidUiautomationPoco()
-import platform
-if platform.system()=='Windows':
-    from airtest.core.android.minitouch import *
-    from airtest.core.android.base_touch import *
-elif platform.system()=='Linux':
-    from airtest.core.android.touch_methods.minitouch import *
-    from airtest.core.android.touch_methods.base_touch import *
-else:
-    pass
+from airtest.core.android.minitouch import *
+from airtest.core.android.base_touch import *
 ButtonDis=40 #常用应用栏上划1/3距离
 ButtonStartDis=10 #响应底部上滑事件距离
-OAppHigh=130 #常用应用栏高度,实际160
-
-ButtonUpSpeed=10 #上划速度
+OAppHigh=110 #常用应用栏高度,实际160
+ButtonUpSpeed=1500 #上划速度
 
 
 def gotohome():
@@ -134,9 +123,10 @@ def screen_shoot(name):
     time.sleep(2)
     poco.adb_client.shell('screencap -p /data/screen.png')
     time.sleep(2)
-    screenshootpath = 'pull /data/screen.png '+PicPath+str(name)+'.png'
+    screenshootpath = 'pull /data/screen.png '+os.path.join(PicPath,str(name))+'.png'
     poco.adb_client.start_cmd(eval('%r'%screenshootpath))
     poco.adb_client.shell('rm /data/screen.png')
+    time.sleep(2)
 
 @Step('在{input}输入{content}')
 def input_(context,input,content):
@@ -225,7 +215,7 @@ def mycommonapp(context):
     # y = 1080
     st = random.randint(ButtonDis,OAppHigh)
     multitouch_event = []
-    multitouch_event += multi_swipe((x,y), (x,y-st),finger=finger, duration=0.8, steps=5)
+    multitouch_event += multi_swipe((x,y), (x,y-st),finger=finger, duration=2, steps=5)
     # print("1111111111111111111111111111111111111111111111")
     # print(multitouch_event)
     device().minitouch.perform(multitouch_event)
@@ -237,7 +227,7 @@ def mycommonapp(context):
     finger = 1
     multitouch_event = []
     x = random.randint(10,1890)
-    y = random.randint(1080-ButtonStartDis,1080)
+    y = 1080
     st = 30
     # st = random.randint(0,ButtonDis)
     multitouch_event = []
@@ -265,15 +255,15 @@ def myusingapp(context):
     # multitouch_event.append(UpEvent(0))
     # device().minitouch.perform(multitouch_event)
     # time.sleep(0.5)
-    # finger = random.randint(1,5)
-    finger = 1
+    finger = random.randint(1,5)
+    # finger = 1
     multitouch_event = []
     x = random.randint(10,1890)
-    y = 1080-ButtonStartDis
+    y = random.randint(1080-ButtonStartDis,1080)
     # st = random.randint(OAppHigh,1080)
-    st = random.randint(OAppHigh,230)
+    st = random.randint(OAppHigh,y)
     multitouch_event = []
-    multitouch_event += multi_swipe((x,y), (x,y-st),finger=finger, duration=0.8, steps=5)
+    multitouch_event += multi_swipe((x,y), (x,y-st),finger=finger, duration=2, steps=20)
     # print("1111111111111111111111111111111111111111111111")
     # print(multitouch_event)
     device().minitouch.perform(multitouch_event)
@@ -282,12 +272,20 @@ def myusingapp(context):
 
 @Step('底部上划回到桌面')
 def myswipehome(context):
+    finger = random.randint(1,5)
+    # finger = 1
     multitouch_event = []
-    x = random.randint(1,1920)
-    multitouch_event.append(DownEvent((x, 1080), 0))
-    multitouch_event.append(MoveEvent((x,600),0))
-    # multitouch_event.append(SleepEvent(1))
-    multitouch_event.append(UpEvent(0))
+    x = random.randint(10,1890)
+    y = 1080-ButtonStartDis
+    # st = random.randint(OAppHigh,1080)
+    st = random.randint(OAppHigh,y)
+    # duration = round(float(st)/float(1500),2)
+    # duration = round(float(st)/float(2000),2)
+    duration = 0.2
+    multitouch_event = []
+    multitouch_event += multi_swipe((x,y), (x,y-st),finger=finger, duration=duration, steps=5)
+    # print("1111111111111111111111111111111111111111111111")
+    # print(multitouch_event)
     device().minitouch.perform(multitouch_event)
     time.sleep(0.5)
 
@@ -407,25 +405,39 @@ def nousingapp(context):
     #     context.soft=location_soft(i)
     #     stop_app(context.soft)
     gotohome()
+    finger = random.randint(1,5)
     multitouch_event = []
-    multitouch_event.append(DownEvent((random.randint(1,1920), 1080), 0))
-    multitouch_event.append(MoveEvent((random.randint(1,1920),900),0))
-    multitouch_event.append(UpEvent(0))
+    x = random.randint(10,1890)
+    y = random.randint(1080-ButtonStartDis,1080)
+    st = random.randint(OAppHigh,y)
+    multitouch_event = []
+    multitouch_event += multi_swipe((x,y), (x,y-st),finger=finger, duration=0.8, steps=20)
     device().minitouch.perform(multitouch_event)
+    time.sleep(0.5)
     img = location_img("关闭正在运行应用")
     resolution_x = poco.get_screen_size()[0]
     resolution_y = poco.get_screen_size()[1]
     while True:
         if existsimg(img):
             touch(Template(img, record_pos=None, resolution=(resolution_x, resolution_y)))
+            time.sleep(0.5)
         else:
             break
     gotohome()
 
 @Step('截图保存')
 def my_screen_shoot(context):
-    context.name='screen'
-    screen_shoot(context.name)
+    # context.name='screen'
+    # try:
+    #     screen_shoot(context.name)
+    # except:
+    #     print("截图失败")
+    #     multitouch_event=[]
+    #     for i in range(0,5):
+    #         multitouch_event.append(UpEvent(i))
+    #     device().minitouch.perform(multitouch_event)
+    filename = os.path.join(PicPath,'screen.png')
+    snapshot(filename=filename)
 
 @Step('等待{t}秒')
 def mywait(context,t):
@@ -462,7 +474,7 @@ def img_compile(context,img_path):
     context.img=location_img(img_path)
     resolution_x = poco.get_screen_size()[0]
     resolution_y = poco.get_screen_size()[1]
-    target_image = PicPath+'screen.png'
+    target_image = os.path.join(PicPath,'screen.png')
     pos = find_image(image_path=context.img,target_image=target_image)
     if len(pos) == 0:
         assert False
@@ -499,35 +511,6 @@ def mytime(context):
     else:
         assert False
 
-# @Step('桌面成比例缩小至{ratio}')
-# def smallpanelaccert(context,ratio):
-#     context.ratio = float(ratio)
-#     r = int((float(ratio))*100)
-#     resolution_x = poco.get_screen_size()[0]
-#     resolution_y = poco.get_screen_size()[1]
-#     pos = location_pos("w")
-#     poco.adb_client.start_cmd('root')
-#     poco.adb_client.start_cmd('remount')
-#     time.sleep(2)
-#     poco.adb_client.shell('screencap -p /data/screen.png')
-#     time.sleep(1)
-#     screenshootpath = 'pull /data/screen.png '+PicPath+'screen'+str(r)+'.png'
-#     poco.adb_client.start_cmd(eval('%r'%screenshootpath))
-#     poco.adb_client.shell('rm /data/screen.png')
-#     time.sleep(1)
-#     image_path = PicPath+'w'+str(r)+'.png'
-#     target_image = PicPath+'screen'+str(r)+'.png'
-#     newpos = find_image(image_path=image_path,target_image=target_image)
-#     # newpos = find_image(image_path=r'C:\Users\86186\MVP3.0_OS_Test\features\steps\pic\云白板图标0.8.png',target_image=r'C:\Users\86186\Desktop\screen.png')
-#     xpos = resolution_x/2+(pos[0]-resolution_x/2)*context.ratio
-#     ypos = resolution_y-(resolution_y-pos[1])*context.ratio
-#     xpos = abs(xpos-newpos[0])
-#     ypos = abs(ypos-newpos[1])
-#     if xpos<5 and ypos<5:
-#         assert True
-#     else:
-#         assert False
-
 @Step('{pic}成比例缩小至{ratio}')
 def smallpanelaccert(context,pic,ratio):
     context.ratio = float(ratio)
@@ -539,14 +522,10 @@ def smallpanelaccert(context,pic,ratio):
     poco.adb_client.start_cmd('root')
     poco.adb_client.start_cmd('remount')
     time.sleep(2)
-    poco.adb_client.shell('screencap -p /data/screen.png')
+    screen_shoot(str(r))
     time.sleep(2)
-    screenshootpath = 'pull /data/screen.png '+PicPath+'screen'+str(r)+'.png'
-    poco.adb_client.start_cmd(eval('%r'%screenshootpath))
-    poco.adb_client.shell('rm /data/screen.png')
-    time.sleep(2)
-    image_path = PicPath+context.pic+str(r)+'.png'
-    target_image = PicPath+'screen'+str(r)+'.png'
+    image_path = os.path.join(PicPath,context.pic+str(r)+'.png')
+    target_image = os.path.join(PicPath,'screen'+str(r)+'.png')
     newpos = find_image(image_path=image_path,target_image=target_image)
     # newpos = find_image(image_path=r'C:\Users\86186\MVP3.0_OS_Test\features\steps\pic\云白板图标0.8.png',target_image=r'C:\Users\86186\Desktop\screen.png')
     xpos = resolution_x/2+(pos[0]-resolution_x/2)*context.ratio
@@ -597,9 +576,26 @@ def Outusing_Click(context):
     while True:
         x=random.randint(1,1920)
         y=random.randint(1,1080)
-        if 566<x<1354 and 947<y<1080:
+        if 290<x<714 and 190<y<493:
             continue
-        if 282<x<1617 and 218<y<856:
+        if 592<x<1324 and 920<y<1061:
+            continue
+        else:
+            touch((x,y))
+            break
+
+@Step('点击运行应用之间')
+def Outusing_Click(context):
+    x=random.randint(714,737)
+    y=random.randint(190,493)
+    touch((x,y))
+
+@Step('点击运行应用空白区域')
+def Outusing_Click(context):
+    while True:
+        x=random.randint(714,1607)
+        y=random.randint(290,816)
+        if 290<x<714 and 514<y<816:
             continue
         else:
             touch((x,y))
@@ -610,9 +606,7 @@ def Outnormal_Click(context):
     while True:
         x=random.randint(1,1920)
         y=random.randint(1,1080)
-        if 566<x<1354 and 947<y<1080:
-            continue
-        if 282<x<1617 and 218<y<856:
+        if 592<x<1324 and 920<y<1061:
             continue
         else:
             touch((x,y))

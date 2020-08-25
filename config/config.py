@@ -43,7 +43,9 @@ SavDir = conf.get("Camera", "SavDir").strip()
 ArmPort = conf.get("Arm", "ArmPort").strip()
 ArmUse = conf.get("Arm", "ArmUse").strip()
 
-PicPath = conf.get("path", "PicPath").strip()
+# PicPath = conf.get("path", "PicPath").strip()
+PicPath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'testdate','pic')
+print(PicPath)
 TestVedioPath = conf.get("path", "TestVedioPath").strip()
 
 MediaSoft = conf.get("soft", "MediaSoft").strip()
