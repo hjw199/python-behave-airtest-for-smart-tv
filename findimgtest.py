@@ -2,8 +2,8 @@ from airtest.core.api import *
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 poco = AndroidUiautomationPoco()
 import os
-from airtest.core.android.minitouch import *
-from airtest.core.android.base_touch import *
+from airtest.core.android.touch_methods.minitouch import *
+from airtest.core.android.touch_methods.base_touch import *
 import random
 from mappings import *
 from airtest.core.cv import Template, TargetPos

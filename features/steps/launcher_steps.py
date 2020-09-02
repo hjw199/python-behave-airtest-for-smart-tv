@@ -9,8 +9,8 @@ from mappings import *
 from poco.utils.track import *
 from poco.proxy import UIObjectProxy
 from vediotest.vediotest import *
-from airtest.core.android.minitouch import *
-from airtest.core.android.base_touch import *
+from airtest.core.android.touch_methods.minitouch import *
+from airtest.core.android.touch_methods.base_touch import *
 ButtonDis=40 #常用应用栏上划1/3距离
 ButtonStartDis=10 #响应底部上滑事件距离
 OAppHigh=110 #常用应用栏高度,实际160
@@ -67,7 +67,7 @@ def find_image(image_path, target_image=None, target_pos=TargetPos.MID, timeout=
         else:
             time.sleep(interval)
 
-def multi_swipe(tuple_from_xy, tuple_to_xy,finger=1, duration=0.8, steps=5):
+def multi_swipe(tuple_from_xy, tuple_to_xy,finger=1, duration=0.8, steps=5,sleep=True,move=True,up=True):
     #多指按压滑动抬起
     from_x, from_y = tuple_from_xy
     to_x, to_y = tuple_to_xy
@@ -77,18 +77,21 @@ def multi_swipe(tuple_from_xy, tuple_to_xy,finger=1, duration=0.8, steps=5):
 
     interval = float(duration) / (steps + 1)
     for i in range(1, steps + 1):
-        move_events = [
-                SleepEvent(interval),
-                # MoveEvent((from_x + ((to_x - from_x) * i / steps), from_y + (to_y - from_y) * i / steps),
-                #             contact=0, pressure=50),
-            ]
-        for j in range(0,finger):
-            move_events += [MoveEvent((from_x + ((to_x - from_x) * i / steps)+(10*(j-1)), from_y + (to_y - from_y) * i / steps),
-                            contact=j, pressure=50),]
-        multitouch_event.extend(move_events)
-
-    for i in range(0,finger):
-        multitouch_event.append(UpEvent(i))
+        move_events = []
+        if sleep == True:
+            move_events = [
+                    SleepEvent(interval),
+                    # MoveEvent((from_x + ((to_x - from_x) * i / steps), from_y + (to_y - from_y) * i / steps),
+                    #             contact=0, pressure=50),
+                ]
+        if move == True:
+            for j in range(0,finger):
+                move_events += [MoveEvent((from_x + ((to_x - from_x) * i / steps)+(10*(j-1)), from_y + (to_y - from_y) * i / steps),
+                                contact=j, pressure=50),]
+            multitouch_event.extend(move_events)
+    if up == True:
+        for i in range(0,finger):
+            multitouch_event.append(UpEvent(i))
 
     return multitouch_event
 
@@ -132,7 +135,6 @@ def screen_shoot(name):
 def input_(context,input,content):
     context.input=location_for(input)
     context.input.set_text(content)
-
 
 @Step('点击 {button}')
 def myclick(context,button):
@@ -231,10 +233,9 @@ def mycommonapp(context):
     st = 30
     # st = random.randint(0,ButtonDis)
     multitouch_event = []
-    multitouch_event += multi_swipe_noup((x,y), (x,y-st),finger=finger, duration=0.8, steps=5)
+    multitouch_event += multi_swipe((x,y), (x,y-st),finger=finger, duration=0.8, steps=5,up=False)
     device().minitouch.perform(multitouch_event)
     time.sleep(0.5)
-
 
 @Step('松开手指')
 def upfinger(context):
@@ -269,21 +270,26 @@ def myusingapp(context):
     device().minitouch.perform(multitouch_event)
     time.sleep(0.5)
 
-
 @Step('底部上划回到桌面')
 def myswipehome(context):
-    finger = random.randint(1,5)
-    # finger = 1
+    # finger = random.randint(1,5)
+    finger = 1
     multitouch_event = []
     x = random.randint(10,1890)
-    y = 1080-ButtonStartDis
-    # st = random.randint(OAppHigh,1080)
-    st = random.randint(OAppHigh,y)
+    y = 1080
+    # st = random.randint(OAppHigh,y)
+    st = 200
     # duration = round(float(st)/float(1500),2)
-    # duration = round(float(st)/float(2000),2)
-    duration = 0.2
+    duration = 0
     multitouch_event = []
-    multitouch_event += multi_swipe((x,y), (x,y-st),finger=finger, duration=duration, steps=5)
+    multitouch_event += multi_swipe((x,y), (x,y-st),finger=finger,duration=duration,steps=5,sleep=False)
+    # print("1111111111111111111111111111111111111111111111")
+    # print(multitouch_event)
+    device().minitouch.perform(multitouch_event)
+    time.sleep(0.5)
+    x = random.randint(10,1890)
+    multitouch_event = []
+    multitouch_event += multi_swipe((x,y), (x,y-st),finger=finger,duration=duration,steps=5,sleep=False)
     # print("1111111111111111111111111111111111111111111111")
     # print(multitouch_event)
     device().minitouch.perform(multitouch_event)
@@ -342,6 +348,7 @@ def allogin(context):
         location_for("账号").set_text(18659131313)
         location_for("密码").set_text(123456)
         location_for("登录").click()
+    time.sleep(0.5)
     assert location_for("下课")
 
 @Step('登录账号')
@@ -408,7 +415,7 @@ def nousingapp(context):
     finger = random.randint(1,5)
     multitouch_event = []
     x = random.randint(10,1890)
-    y = random.randint(1080-ButtonStartDis,1080)
+    y = 1080
     st = random.randint(OAppHigh,y)
     multitouch_event = []
     multitouch_event += multi_swipe((x,y), (x,y-st),finger=finger, duration=0.8, steps=20)
@@ -444,7 +451,6 @@ def mywait(context,t):
     time.sleep(float(t))
 
 
-    
 '''断言'''
 
 @Step('不存在 {id}')

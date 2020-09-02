@@ -11,4 +11,8 @@ def before_all(context):
 
 
 def after_all(context):
+    
     pass
+
+def after_scenario(context,scenario):
+    time.sleep(3)

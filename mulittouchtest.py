@@ -2,8 +2,8 @@ from airtest.core.api import *
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 poco = AndroidUiautomationPoco()
 import os
-from airtest.core.android.minitouch import *
-from airtest.core.android.base_touch import *
+from airtest.core.android.touch_methods.minitouch import *
+from airtest.core.android.touch_methods.base_touch import *
 import random
 from mappings import *
 from airtest.core.cv import Template, TargetPos
@@ -45,7 +45,7 @@ def mulit_swipe_move(tuple_from_xy, tuple_to_xy,finger=0,duration=0.8, steps=5):
     return ret
 
 
-def multi_swipe(tuple_from_xy, tuple_to_xy,finger=1, duration=0.8, steps=5):
+def multi_swipe(tuple_from_xy, tuple_to_xy,finger=1, duration=0.8, steps=5,sleep=True,move=True,up=True):
     #多指按压滑动抬起
     from_x, from_y = tuple_from_xy
     to_x, to_y = tuple_to_xy
@@ -55,18 +55,21 @@ def multi_swipe(tuple_from_xy, tuple_to_xy,finger=1, duration=0.8, steps=5):
 
     interval = float(duration) / (steps + 1)
     for i in range(1, steps + 1):
-        move_events = [
-                SleepEvent(interval),
-                # MoveEvent((from_x + ((to_x - from_x) * i / steps), from_y + (to_y - from_y) * i / steps),
-                #             contact=0, pressure=50),
-            ]
-        for j in range(0,finger):
-            move_events += [MoveEvent((from_x + ((to_x - from_x) * i / steps)+(10*(j-1)), from_y + (to_y - from_y) * i / steps),
-                            contact=j, pressure=50),]
-        multitouch_event.extend(move_events)
-
-    for i in range(0,finger):
-        multitouch_event.append(UpEvent(i))
+        move_events = []
+        if sleep == True:
+            move_events = [
+                    SleepEvent(interval),
+                    # MoveEvent((from_x + ((to_x - from_x) * i / steps), from_y + (to_y - from_y) * i / steps),
+                    #             contact=0, pressure=50),
+                ]
+        if move == True:
+            for j in range(0,finger):
+                move_events += [MoveEvent((from_x + ((to_x - from_x) * i / steps)+(10*(j-1)), from_y + (to_y - from_y) * i / steps),
+                                contact=j, pressure=50),]
+            multitouch_event.extend(move_events)
+    if up == True:
+        for i in range(0,finger):
+            multitouch_event.append(UpEvent(i))
 
     return multitouch_event
 
@@ -213,26 +216,41 @@ def multi_swipe_noup(tuple_from_xy, tuple_to_xy,finger=1, duration=0.8, steps=5)
 # print("1111111111111111111111111111111111111111111111")
 # print(multitouch_event)
 # device().minitouch.perform(multitouch_event)
-
 '''测试回到桌面'''
-finger = random.randint(1,5)
-# finger = 1
-multitouch_event = []
-x = random.randint(10,1890)
-y = random.randint(1070,1080)
-# st = random.randint(OAppHigh,1080)
-st = random.randint(110,y)
-# duration = round(float(st)/float(1500),2)
-# duration = round(float(st)/float(3000),2)
-duration = 0.2
-multitouch_event = []
-multitouch_event += multi_swipe((x,y), (x,y-st),finger=finger, duration=duration, steps=5)
-# print("1111111111111111111111111111111111111111111111")
-# print(multitouch_event)
-device().minitouch.perform(multitouch_event)
-print("1111111111111111111111111111111111111111111111")
-print(y-st)
-print(duration)
+# while True:
+#     # finger = random.randint(1,5)
+#     finger = 1
+#     multitouch_event = []
+#     x = random.randint(10,1890)
+#     # y = random.randint(1070,1080)
+#     y=1080
+#     # st = random.randint(OAppHigh,1080)
+#     # st = random.randint(110,y)
+#     st=200
+#     # duration = round(float(st)/float(1500),2)
+#     # duration = round(float(st)/float(3000),2)
+#     duration = 0
+#     # swipe((x,y),(x,y-st),duration=0)
+#     touch((996,381))
+#     time.sleep(1)
+#     multitouch_event += multi_swipe((x,y), (x,y-st),finger=finger, duration=duration, steps=5)
+#     # print("1111111111111111111111111111111111111111111111")
+#     # print(multitouch_event)
+#     # device().minitouch.perform(multitouch_event)
+#     # # print("1111111111111111111111111111111111111111111111")
+#     # # print(y-st)
+#     # # print(duration)
+#     # multitouch_event = []
+#     # multitouch_event.append(DownEvent((1000, 1080), 0))
+#     # for y in range(40,200,40):
+#     #     multitouch_event.append(MoveEvent((1000,1080-y),0))
+#     # multitouch_event.append(UpEvent(0))
+#     device().minitouch.perform(multitouch_event)
+#     i+=1
+#     time.sleep(2)
+#     print("1111111111111111111111111111111111")
+#     print(i)
+#     assert location_for("时间")
 
 # 624/0.15   465/0.2    869/0.07     744/0.11    907/0.05      442/0.21     425/0.22
 
@@ -270,3 +288,15 @@ print(duration)
 #         print(x,y)
 #         touch((x,y))
 #         break
+i=0
+while True:
+    x=random.randint(400,1500)
+    y=random.randint(1,500)
+    multitouch_event=[]
+    multitouch_event += multi_swipe(tuple_from_xy=(x,y),tuple_to_xy=(x,y+500),finger=4,duration=0)
+    device().minitouch.perform(multitouch_event)
+    touch((1,1))
+    i+=1
+    print("11111111111111111111111111111111111")
+    print(x,y)
+    print(i)
