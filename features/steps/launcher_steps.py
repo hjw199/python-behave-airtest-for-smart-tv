@@ -44,7 +44,7 @@ def find_image(image_path, target_image=None, target_pos=TargetPos.MID, timeout=
         if target_image:
             screen = aircv.imread(target_image)
         else:
-            imagepath = screenshotDir + datetime.datetime.now().strftime('%Y%m%d-%H%M%S') + ".png"
+            imagepath = PicPath + datetime.datetime.now().strftime('%Y%m%d-%H%M%S') + ".png"
             screen = airtestG.DEVICE.snapshot(imagepath)
             print("----------------")
             print(screen is None)
