@@ -50,6 +50,7 @@ ArmUse = conf.get("Arm", "ArmUse").strip()
 
 # PicPath = conf.get("path", "PicPath").strip()
 PicPath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'testdate','pic')
+ScreenshotPath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'testdate','screenshot')
 # print(PicPath)
 TestVedioPath = conf.get("path", "TestVedioPath").strip()
 

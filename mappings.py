@@ -61,6 +61,9 @@ POCO_DICT = {
     "日期" : "com.ruijie.launcher20200520:id/tv_time_calendar",
     "云白板":poco_type("text","云白板"),
     "重新开始" : "android:id/button2",
+    "取消按钮":"com.ruijie.launcher20200520:id/tv_cancel",
+    "新建白板":"android.widget.ImageView",
+    "画笔":"com.ruijie.whiteboard.lscreen:id/penview",
 }
 
 SOFT_DICT = {
@@ -74,6 +77,8 @@ SOFT_DICT = {
     "桌面程序" : 'com.ruijie.launcher20200520',
     "视频播放器" : 'com.mstar.tv.tvplayer.ui',
     "WPS" : 'com.kingsoft.moffice_pro',
+    "语音激励": 'com.ruijie.speech.appear',
+    "文件": 'com.android.documentsui',
 }
 
 # IMG_DICT = {
@@ -109,5 +114,5 @@ POS_DICT = {
     "云资料夹" : '(1189,0384)',
     "云白板图标" : '(1000,0384)',
     "账号登录图标" : '(0350,0452)',
-    "宝可梦" : '(0780,0359)',
+    "宝可梦图片" : '(0780,0359)',
 }

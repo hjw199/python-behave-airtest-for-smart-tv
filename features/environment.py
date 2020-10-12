@@ -3,6 +3,7 @@ from config.config import *
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 
 connect_device('android:///' + Android_Serial_No)
+# poco = AndroidUiautomationPoco()
 
 def before_all(context):
     # connect_device('android:///' + Android_Serial_No)
