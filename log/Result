@@ -1,0 +1,538 @@
+
+
+STARTTIME
+
+com.ruijie.whiteboard.lscreen/com.ruijie.whiteboard.rj_board.BoardListActivityStarting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.ruijie.whiteboard.lscreen/com.ruijie.whiteboard.rj_board.BoardListActivity }
+Status: ok
+Activity: com.ruijie.whiteboard.lscreen/com.ruijie.whiteboard.rj_board.BoardListActivity
+ThisTime: 827
+TotalTime: 87724
+WaitTime: 866
+Complete
+
+
+
+STARTTIME
+
+com.ruijie.whiteboard.cloudfile.screen/.home.MainActivity:PASS['682']
+
+
+STARTTIME
+
+com.ruijie.whiteboard.cloudfile.screen/.home.MainActivity:PASS['171']
+
+
+STARTTIME
+
+com.ruijie.launcher20200520:PASS['0']
+
+
+STARTTIME
+
+com.ruijie.launcher20200520:PASS['0']
+
+
+STARTTIME
+
+com.ruijie.whiteboard.lscreen/com.ruijie.whiteboard.rj_board.BoardListActivityStarting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.ruijie.whiteboard.lscreen/com.ruijie.whiteboard.rj_board.BoardListActivity }
+Status: ok
+Activity: com.ruijie.whiteboard.lscreen/com.ruijie.whiteboard.rj_board.BoardListActivity
+ThisTime: 651
+TotalTime: 2106891
+WaitTime: 684
+Complete
+
+
+
+STARTTIME
+
+com.ruijie.whiteboard.cloudfile.screen/.home.MainActivity:PASS['583']
+
+
+STARTTIME
+
+com.ruijie.whiteboard.cloudfile.screen/.home.MainActivity:PASS['131']
+
+
+STARTTIME
+
+com.ruijie.launcher20200520:PASS['0']
+
+
+STARTTIME
+
+com.ruijie.launcher20200520:PASS['0']
+
+
+MONKEY
+
+com.ruijie.whiteboard.lscreenmonkey test PASS
+
+
+MONKEY
+
+com.ruijie.whiteboard.cloudfile.screenmonkey test PASS
+
+
+MONKEY
+
+com.ruijie.launcher20200520monkey test PASS
+
+
+STARTTIME
+
+com.ruijie.whiteboard.lscreen/com.ruijie.whiteboard.rj_board.BoardListActivityStarting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.ruijie.whiteboard.lscreen/com.ruijie.whiteboard.rj_board.BoardListActivity }
+Status: ok
+Activity: com.ruijie.whiteboard.lscreen/com.ruijie.whiteboard.rj_board.BoardListActivity
+ThisTime: 734
+TotalTime: 33429
+WaitTime: 781
+Complete
+
+
+
+STARTTIME
+
+com.ruijie.whiteboard.cloudfile.screen/.home.MainActivity:PASS['670']
+
+
+STARTTIME
+
+com.ruijie.whiteboard.cloudfile.screen/.home.MainActivity:PASS['182']
+
+
+STARTTIME
+
+com.ruijie.launcher20200520:PASS['0']
+
+
+STARTTIME
+
+com.ruijie.launcher20200520:PASS['0']
+
+
+UI
+
+com.ruijie.whiteboard.lscreenApplications Graphics Acceleration Info:
+Uptime: 17783366 Realtime: 17783366
+
+** Graphics info for pid 3396 [com.ruijie.whiteboard.lscreen] **
+Profile data in ms:
+
+View hierarchy:
+
+
+Total ViewRootImpl: 0
+Total Views:        0
+Total DisplayList:  0.00 kB
+
+
+
+
+UI
+
+com.ruijie.whiteboard.cloudfile.screenApplications Graphics Acceleration Info:
+Uptime: 17792601 Realtime: 17792601
+
+** Graphics info for pid 3701 [com.ruijie.whiteboard.cloudfile.screen] **
+Profile data in ms:
+
+View hierarchy:
+
+
+Total ViewRootImpl: 0
+Total Views:        0
+Total DisplayList:  0.00 kB
+
+
+
+
+UI
+
+
+
+MONKEY
+
+com.ruijie.whiteboard.lscreenmonkey test PASS
+
+
+MONKEY
+
+com.ruijie.whiteboard.cloudfile.screenmonkey test PASS
+
+
+MONKEY
+
+com.ruijie.launcher20200520monkey test PASS
+
+
+STARTTIME
+
+com.ruijie.whiteboard.lscreen/com.ruijie.whiteboard.rj_board.BoardListActivityStarting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.ruijie.whiteboard.lscreen/com.ruijie.whiteboard.rj_board.BoardListActivity }
+Status: ok
+Activity: com.ruijie.whiteboard.lscreen/com.ruijie.whiteboard.rj_board.BoardListActivity
+ThisTime: 833
+TotalTime: 40809
+WaitTime: 903
+Complete
+
+
+
+STARTTIME
+
+com.ruijie.whiteboard.cloudfile.screen/.home.MainActivity:PASS['1068']
+
+
+STARTTIME
+
+com.ruijie.whiteboard.cloudfile.screen/.home.MainActivity:PASS['243']
+
+
+STARTTIME
+
+com.ruijie.launcher20200520:PASS['0']
+
+
+STARTTIME
+
+com.ruijie.launcher20200520:PASS['0']
+
+
+UI
+
+com.ruijie.whiteboard.lscreenApplications Graphics Acceleration Info:
+Uptime: 3507309 Realtime: 3507309
+
+** Graphics info for pid 26791 [com.ruijie.whiteboard.lscreen] **
+Profile data in ms:
+
+View hierarchy:
+
+
+Total ViewRootImpl: 0
+Total Views:        0
+Total DisplayList:  0.00 kB
+
+
+
+
+UI
+
+com.ruijie.whiteboard.cloudfile.screenApplications Graphics Acceleration Info:
+Uptime: 3523188 Realtime: 3523188
+
+** Graphics info for pid 27614 [com.ruijie.whiteboard.cloudfile.screen] **
+Profile data in ms:
+
+View hierarchy:
+
+
+Total ViewRootImpl: 0
+Total Views:        0
+Total DisplayList:  0.00 kB
+
+
+
+
+UI
+
+
+
+MONKEY
+
+com.ruijie.whiteboard.lscreenmonkey test PASS
+
+
+MONKEY
+
+com.ruijie.whiteboard.cloudfile.screenmonkey test PASS
+
+
+MONKEY
+
+com.ruijie.launcher20200520monkey test PASS
+
+
+STARTTIME
+
+com.ruijie.whiteboard.lscreen/com.ruijie.whiteboard.rj_board.BoardListActivityStarting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.ruijie.whiteboard.lscreen/com.ruijie.whiteboard.rj_board.BoardListActivity }
+Status: ok
+Activity: com.ruijie.whiteboard.lscreen/com.ruijie.whiteboard.rj_board.BoardListActivity
+ThisTime: 1066
+TotalTime: 37964
+WaitTime: 1132
+Complete
+
+
+
+STARTTIME
+
+com.ruijie.whiteboard.cloudfile.screen/.home.MainActivity:PASS['1085']
+
+
+STARTTIME
+
+com.ruijie.whiteboard.cloudfile.screen/.home.MainActivity:PASS['237']
+
+
+STARTTIME
+
+com.ruijie.launcher20200520:PASS['0']
+
+
+STARTTIME
+
+com.ruijie.launcher20200520:PASS['0']
+
+
+UI
+
+com.ruijie.whiteboard.lscreenNo process found for: com.ruijie.whiteboard.lscreen
+
+
+
+UI
+
+com.ruijie.whiteboard.cloudfile.screenApplications Graphics Acceleration Info:
+Uptime: 3049321 Realtime: 3049321
+
+** Graphics info for pid 25107 [com.ruijie.whiteboard.cloudfile.screen] **
+Profile data in ms:
+
+View hierarchy:
+
+
+Total ViewRootImpl: 0
+Total Views:        0
+Total DisplayList:  0.00 kB
+
+
+
+
+UI
+
+
+
+MONKEY
+
+com.ruijie.whiteboard.lscreenmonkey test PASS
+
+
+MONKEY
+
+com.ruijie.whiteboard.cloudfile.screenmonkey test PASS
+
+
+MONKEY
+
+com.ruijie.launcher20200520monkey test PASS
+
+
+STARTTIME
+
+com.ruijie.whiteboard.lscreen/com.ruijie.whiteboard.rj_board.BoardListActivityStarting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.ruijie.whiteboard.lscreen/com.ruijie.whiteboard.rj_board.BoardListActivity }
+Status: ok
+Activity: com.ruijie.whiteboard.lscreen/com.ruijie.whiteboard.rj_board.BoardListActivity
+ThisTime: 947
+TotalTime: 37009
+WaitTime: 1021
+Complete
+
+
+
+STARTTIME
+
+com.ruijie.whiteboard.cloudfile.screen/.home.MainActivity:PASS['1085']
+
+
+STARTTIME
+
+com.ruijie.whiteboard.cloudfile.screen/.home.MainActivity:PASS['261']
+
+
+STARTTIME
+
+com.ruijie.launcher20200520:PASS['0']
+
+
+STARTTIME
+
+com.ruijie.launcher20200520:PASS['0']
+
+
+UI
+
+com.ruijie.whiteboard.lscreenNo process found for: com.ruijie.whiteboard.lscreen
+
+
+
+UI
+
+com.ruijie.whiteboard.cloudfile.screenApplications Graphics Acceleration Info:
+Uptime: 1136423 Realtime: 1136423
+
+** Graphics info for pid 6784 [com.ruijie.whiteboard.cloudfile.screen] **
+Profile data in ms:
+
+View hierarchy:
+
+
+Total ViewRootImpl: 0
+Total Views:        0
+Total DisplayList:  0.00 kB
+
+
+
+
+UI
+
+
+
+MONKEY
+
+com.ruijie.whiteboard.lscreenmonkey test PASS
+
+
+MONKEY
+
+com.ruijie.whiteboard.cloudfile.screenmonkey test PASS
+
+
+MONKEY
+
+com.ruijie.launcher20200520monkey test PASS
+
+
+STARTTIME
+
+com.ruijie.whiteboard.lscreen/com.ruijie.whiteboard.rj_board.BoardListActivityStarting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.ruijie.whiteboard.lscreen/com.ruijie.whiteboard.rj_board.BoardListActivity }
+Status: ok
+Activity: com.ruijie.whiteboard.lscreen/com.ruijie.whiteboard.rj_board.BoardListActivity
+ThisTime: 2102
+TotalTime: 38077
+WaitTime: 2213
+Complete
+
+
+
+STARTTIME
+
+com.ruijie.whiteboard.cloudfile.screen/.home.MainActivity:PASS['1213']
+
+
+STARTTIME
+
+com.ruijie.whiteboard.cloudfile.screen/.home.MainActivity:PASS['250']
+
+
+STARTTIME
+
+com.ruijie.launcher20200520:PASS['0']
+
+
+STARTTIME
+
+com.ruijie.launcher20200520:PASS['0']
+
+
+UI
+
+com.ruijie.whiteboard.lscreenNo process found for: com.ruijie.whiteboard.lscreen
+
+
+
+UI
+
+com.ruijie.whiteboard.cloudfile.screenApplications Graphics Acceleration Info:
+Uptime: 2679274 Realtime: 2679274
+
+** Graphics info for pid 25317 [com.ruijie.whiteboard.cloudfile.screen] **
+Profile data in ms:
+
+View hierarchy:
+
+
+Total ViewRootImpl: 0
+Total Views:        0
+Total DisplayList:  0.00 kB
+
+
+
+
+UI
+
+
+
+MONKEY
+
+com.ruijie.whiteboard.lscreenmonkey test PASS
+
+
+MONKEY
+
+com.ruijie.whiteboard.cloudfile.screenmonkey test PASS
+
+
+MONKEY
+
+com.ruijie.launcher20200520monkey test PASS
+
+
+STARTTIME
+
+com.ruijie.whiteboard.lscreen/com.ruijie.whiteboard.rj_board.BoardListActivityStarting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.ruijie.whiteboard.lscreen/com.ruijie.whiteboard.rj_board.BoardListActivity }
+Status: ok
+Activity: com.ruijie.whiteboard.lscreen/com.ruijie.whiteboard.rj_board.BoardListActivity
+ThisTime: 1571
+TotalTime: 27587
+WaitTime: 1623
+Complete
+
+
+
+STARTTIME
+
+com.ruijie.whiteboard.cloudfile.screen/.home.MainActivity:PASS['965']
+
+
+STARTTIME
+
+com.ruijie.whiteboard.cloudfile.screen/.home.MainActivity:PASS['324']
+
+
+STARTTIME
+
+com.ruijie.launcher20200520:PASS['0']
+
+
+STARTTIME
+
+com.ruijie.launcher20200520:PASS['0']
+
+
+UI
+
+com.ruijie.whiteboard.lscreenNo process found for: com.ruijie.whiteboard.lscreen
+
+
+
+UI
+
+com.ruijie.whiteboard.cloudfile.screenApplications Graphics Acceleration Info:
+Uptime: 3546137 Realtime: 3546137
+
+** Graphics info for pid 20885 [com.ruijie.whiteboard.cloudfile.screen] **
+Profile data in ms:
+
+View hierarchy:
+
+
+Total ViewRootImpl: 0
+Total Views:        0
+Total DisplayList:  0.00 kB
+
+
+
+
+UI
+

@@ -1,5 +1,5 @@
 behave==1.2.6
-airtest==1.1.4
+airtest==1.1.6
 pocoui==1.0.79
 moviepy==1.0.3
 allure-behave==2.8.16

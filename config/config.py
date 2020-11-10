@@ -38,6 +38,8 @@ if Android_Ip:
 else:
     Android_Ip = conf.get("Android", "ip").strip()
     Android_Serial_No = conf.get("Android", "serial_no").strip()
+NFC = conf.get("Android", "NFC").strip()
+Server_IP = conf.get("Android", "Server_IP").strip()
 # System_Version = conf.get("Android", "system_version").strip()
 # Touch_Frame_Version = conf.get("Android", "touch_frame_version").strip()
 
@@ -49,7 +51,9 @@ ArmPort = conf.get("Arm", "ArmPort").strip()
 ArmUse = conf.get("Arm", "ArmUse").strip()
 
 # PicPath = conf.get("path", "PicPath").strip()
+LogPath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'log')
 PicPath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'testdate','pic')
+AppPath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'testdate','app')
 ScreenshotPath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'testdate','screenshot')
 # print(PicPath)
 TestVedioPath = conf.get("path", "TestVedioPath").strip()
